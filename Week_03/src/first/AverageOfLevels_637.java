@@ -1,9 +1,7 @@
 package first;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class AverageOfLevels_637 {
 
@@ -21,7 +19,7 @@ public class AverageOfLevels_637 {
         treeNode3.right = treeNode20;
 
         AverageOfLevels_637 average = new AverageOfLevels_637();
-        average.averageOfLevels2(treeNode3).forEach(d -> System.out.print(d + " "));
+        average.averageOfLevels3(treeNode3).forEach(d -> System.out.print(d + " "));
     }
 
     public List<Double> averageOfLevels(TreeNode root) {
@@ -79,6 +77,32 @@ public class AverageOfLevels_637 {
             result.add(sum / levelCount);
         }
         return result;
+    }
+
+    public List<Double> averageOfLevels3(TreeNode root) {
+        List<Double> result = new ArrayList<>();
+        Map<Integer, Double> countMap = new HashMap<>();
+        Map<Integer, Double> sumMap = new HashMap<>();
+        dfs(sumMap, countMap, root, 1);
+        for (Map.Entry<Integer, Double> entry : sumMap.entrySet()) {
+            result.add(entry.getValue() / countMap.get(entry.getKey()));
+        }
+        return result;
+    }
+
+    public void dfs(Map<Integer, Double> sumMap, Map<Integer, Double> countMap, TreeNode node, int level) {
+        if (node == null) {
+            return;
+        }
+        if (sumMap.containsKey(level)) {
+            sumMap.put(level, sumMap.get(level) + node.val);
+            countMap.put(level, countMap.get(level) + 1);
+        } else {
+            sumMap.put(level, (double) node.val);
+            countMap.put(level, 1D);
+        }
+        dfs(sumMap, countMap, node.left, level + 1);
+        dfs(sumMap, countMap, node.right, level + 1);
     }
 
     public static class TreeNode {
