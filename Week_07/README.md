@@ -1,7 +1,7 @@
 学习笔记
 
 ###双向BFS代码模板
-···
+```
 public void deBFS() {
     Set<String> visited = new HashSet<>();
     Set<String> startSet = new HashSet<>();
@@ -31,5 +31,6 @@ public void deBFS() {
         }
         // 赋值新的startSet
         startSet = tempSet;
+    }
 }
-···
+```
