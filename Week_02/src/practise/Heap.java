@@ -10,7 +10,7 @@ public class Heap {
         heap.insert(33);
         heap.insert(27);
         heap.insert(21);
-        heap.insert(16);
+        heap.insert(55);
         heap.insert(13);
         heap.insert(15);
         heap.insert(19);
