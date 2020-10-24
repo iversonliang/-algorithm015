@@ -15,7 +15,7 @@ public class HeapSort {
     public static void heapifyDown3(int[] arr, int limit, int i) {
         int value = arr[i];
         int tempIndex = i;
-        for (int child = 2 * i + 1; child < limit; child += 2 * i + 1) {
+        for (int child = 2 * i + 1; child < limit; child = 2 * child + 1) {
             if (child + 1 < limit && arr[child] < arr[child + 1]) {
                 child++;
             }
